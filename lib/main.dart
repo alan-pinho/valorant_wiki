@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:valowiki/configs/themes/theme.dart';
+import 'package:valowiki/pages/splash/splash_page.dart';
 import 'package:valowiki/routes.dart';
-import 'package:valowiki/theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +16,13 @@ class MyApp extends StatelessWidget {
       title: 'ValoWiki',
       routes: routes,
       theme: theme,
-      home: Container(),
+      initialRoute: SplashPage.routeName,
+      onGenerateRoute: (settings) {
+        return MaterialPageRoute(
+          builder: (context) => routes[settings.name]!(context),
+        );
+      },
+      home: const SplashPage(),
     );
   }
 }
