@@ -8,13 +8,21 @@
       "name": "Local",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "debug"
+      "flutterMode": "debug",
+      "args": ["--flavor", "local"]
     },
     {
       "name": "Produção",
       "request": "launch",
       "type": "dart",
-      "flutterMode": "release"
-    }
+      "flutterMode": "release",
+      "args": ["--flavor", "prod"]
+    },
+    {
+      "name": "Flutter: Run all Tests",
+      "type": "dart",
+      "request": "launch",
+      "program": "./test/"
+  },
   ]
 }

@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "860004471907",
+    "project_id": "valorantflutterwiki",
+    "storage_bucket": "valorantflutterwiki.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:860004471907:android:80bb1e92ab167567d05456",
+        "android_client_info": {
+          "package_name": "com.valowiki"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBP8pJ2JfXD-dFrZKD0VCOhpWyDemcWX7s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

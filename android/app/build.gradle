@@ -48,6 +48,20 @@ android {
         versionName flutterVersionName
     }
 
+    flavorDimensions "default"
+
+    productFlavors {
+        prod {
+            dimension "default"
+            resValue "string", "app_name", "ValoWiki"
+        }
+        local {
+            dimension "default"
+            resValue "string", "app_name", "[local] ValoWiki"
+            applicationIdSuffix ".local"
+        }
+    }
+
     buildTypes {
         release {
             signingConfig signingConfigs.debug
