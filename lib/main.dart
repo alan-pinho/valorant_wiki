@@ -1,22 +1,35 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 import 'package:valowiki/configs/themes/theme.dart';
 import 'package:valowiki/dependencies_injection.dart';
-import 'package:valowiki/firebase_options.dart';
+import 'package:valowiki/env.dart';
 import 'package:valowiki/pages/splash/splash_page.dart';
 import 'package:valowiki/routes.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // final Logger log = Logger('main');
+
   Intl.defaultLocale = 'pt_BR';
   await initDependenciesInjection();
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  final env = GetIt.I.get<EnvironmentConfig>();
+
+  await Firebase.initializeApp(options: env.firebaseOptions);
+
+  FlutterError.onError = (errorDetails) {
+    FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+  };
+
+  PlatformDispatcher.instance.onError = (error, stack) {
+    FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+    return true;
+  };
 
   runApp(const MyApp());
 }

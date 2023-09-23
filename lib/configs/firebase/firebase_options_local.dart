@@ -14,7 +14,7 @@ import 'package:flutter/foundation.dart'
 ///   options: DefaultFirebaseOptions.currentPlatform,
 /// );
 /// ```
-class DefaultFirebaseOptions {
+class DefaultFirebaseOptionsLocal {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
       throw UnsupportedError(
@@ -26,7 +26,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        return ios;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for ios - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -51,18 +54,9 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBP8pJ2JfXD-dFrZKD0VCOhpWyDemcWX7s',
-    appId: '1:860004471907:android:80bb1e92ab167567d05456',
+    appId: '1:860004471907:android:954ec799ba8748a9d05456',
     messagingSenderId: '860004471907',
     projectId: 'valorantflutterwiki',
     storageBucket: 'valorantflutterwiki.appspot.com',
-  );
-
-  static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBuvoAQkJj6XGsvVzY4XHx10rJCe0L_eaA',
-    appId: '1:860004471907:ios:0df88d0be4874a56d05456',
-    messagingSenderId: '860004471907',
-    projectId: 'valorantflutterwiki',
-    storageBucket: 'valorantflutterwiki.appspot.com',
-    iosBundleId: 'com.valowiki',
   );
 }
