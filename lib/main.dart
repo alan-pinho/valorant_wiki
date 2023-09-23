@@ -9,6 +9,7 @@ import 'package:flutter_localization/flutter_localization.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 import 'package:logging/logging.dart';
+import 'package:valowiki/configs/firebase/analytics/vw_analytics_navigator_observer.dart';
 import 'package:valowiki/configs/firebase/crashlytics/vw_crashlytics_service.dart';
 import 'package:valowiki/configs/themes/theme.dart';
 import 'package:valowiki/dependencies_injection.dart';
@@ -83,6 +84,7 @@ class MyApp extends StatelessWidget {
       supportedLocales: localization.supportedLocales,
       localizationsDelegates: localization.localizationsDelegates,
       initialRoute: SplashPage.routeName,
+      navigatorObservers: [VWAnalyticsRouteObserver()],
       onGenerateRoute: (settings) {
         return MaterialPageRoute(
           builder: (context) => routes[settings.name]!(context),
