@@ -12,6 +12,14 @@ if (localPropertiesFile.exists()) {
     }
 }
 
+def keyProperties = new Properties()
+def keyPropertiesFile = rootProject.file('key.properties')
+if (keyPropertiesFile.exists()) {
+    keyPropertiesFile.withReader('UTF-8') { reader ->
+        keyProperties.load(reader)
+    }
+}
+
 def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
 if (flutterVersionCode == null) {
     flutterVersionCode = '1'
@@ -48,29 +56,42 @@ android {
         versionName flutterVersionName
     }
 
-    flavorDimensions "default"
-
-    productFlavors {
-        prod {
-            dimension "default"
-            resValue "string", "app_name", "ValoWiki"
-        }
-        local {
-            dimension "default"
-            resValue "string", "app_name", "[local] ValoWiki"
-            applicationIdSuffix ".local"
+    signingConfigs {
+        release {
+            storeFile file(keyProperties["storeFile"])
+            storePassword keyProperties["storePassword"]
+            keyAlias keyProperties["keyAlias"]
+            keyPassword keyProperties["keyPassword"]
         }
     }
 
     buildTypes {
         release {
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
         }
     }
+
+    flavorDimensions "app"
+
+    productFlavors {
+        prod {
+            dimension "app"
+            resValue "string", "app_name", "ValoWiki"
+        }
+        local {
+            dimension "app"
+            resValue "string", "app_name", "[local] ValoWiki"
+            applicationIdSuffix ".local"
+        }
+    }
+
 }
 
 flutter {
     source '../..'
 }
 
-dependencies {}
+dependencies {
+    implementation platform('com.google.firebase:firebase-bom:32.3.1')
+    implementation 'com.google.firebase:firebase-analytics'
+}

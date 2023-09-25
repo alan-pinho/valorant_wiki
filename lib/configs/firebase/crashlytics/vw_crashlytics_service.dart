@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 class VWCrashlyticsService {
   final FirebaseCrashlytics _crashlytics = FirebaseCrashlytics.instance;
 
-  VWCrashlyticsService._();
+  VWCrashlyticsService._() {
+    _crashlytics.setCrashlyticsCollectionEnabled(true);
+  }
 
   static VWCrashlyticsService get i => VWCrashlyticsService._();
 

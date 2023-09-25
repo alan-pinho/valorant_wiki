@@ -19,6 +19,9 @@ import 'package:valowiki/routes.dart';
 
 Future<void> main() async {
   await runZonedGuarded(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    Intl.defaultLocale = 'pt_BR';
+
     Logger.root.level = kDebugMode ? Level.FINE : Level.INFO;
     Logger.root.onRecord.listen((record) {
       log('[${record.level.name}] [${record.time}]: ${record.message}');
@@ -31,12 +34,9 @@ Future<void> main() async {
       }
     });
 
-    WidgetsFlutterBinding.ensureInitialized();
-
-    Intl.defaultLocale = 'pt_BR';
-
     await initDependenciesInjection();
     final env = GetIt.I.get<EnvironmentConfig>();
+
     await Firebase.initializeApp(options: env.firebaseOptions);
 
     FlutterError.onError = (errorDetails) {
