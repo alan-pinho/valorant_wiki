@@ -4,6 +4,9 @@ gradle-wrapper.jar
 /gradlew
 /gradlew.bat
 /local.properties
+/app/google-services.json
+/app/src/local/google-services.json
+/app/src/prod/google-services.json
 GeneratedPluginRegistrant.java
 
 # Remember to never publicly share your keystore.
