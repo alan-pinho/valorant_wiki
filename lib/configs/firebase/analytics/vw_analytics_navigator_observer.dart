@@ -9,45 +9,49 @@ class VWAnalyticsRouteObserver extends NavigatorObserver {
 
   @override
   void didPop(Route route, Route? previousRoute) {
-    _logger.finer('RouteObserver - didPop');
+    final routeName = route.settings.name ?? 'unnamed route';
+    _logger.finer('RouteObserver - didPop: $routeName');
     super.didPop(route, previousRoute);
 
     _analytics.logScreenView(
       screenClass: route.settings.runtimeType.toString(),
-      screenName: route.settings.name ?? 'unnamed route',
+      screenName: routeName,
     );
   }
 
   @override
   void didPush(Route route, Route? previousRoute) {
-    _logger.finer('RouteObserver - didPush');
+    final routeName = route.settings.name ?? 'unnamed route';
+    _logger.finer('RouteObserver - didPush: $routeName');
     super.didPush(route, previousRoute);
 
     _analytics.logScreenView(
       screenClass: route.settings.runtimeType.toString(),
-      screenName: route.settings.name ?? 'unnamed route',
+      screenName: routeName,
     );
   }
 
   @override
   void didRemove(Route route, Route? previousRoute) {
-    _logger.finer('RouteObserver - didRemove');
+    final routeName = route.settings.name ?? 'unnamed route';
+    _logger.finer('RouteObserver - didRemove: $routeName');
     super.didRemove(route, previousRoute);
 
     _analytics.logScreenView(
       screenClass: route.settings.runtimeType.toString(),
-      screenName: route.settings.name ?? 'unnamed route',
+      screenName: routeName,
     );
   }
 
   @override
   void didReplace({Route? newRoute, Route? oldRoute}) {
-    _logger.finer('RouteObserver - didReplace');
+    final routeName = newRoute?.settings.name ?? 'unnamed route';
+    _logger.finer('RouteObserver - didReplace: $routeName');
     super.didReplace(newRoute: newRoute, oldRoute: oldRoute);
 
     _analytics.logScreenView(
       screenClass: newRoute?.settings.runtimeType.toString() ?? 'unnamed route',
-      screenName: newRoute?.settings.name ?? 'unnamed route',
+      screenName:routeName,
     );
   }
 }

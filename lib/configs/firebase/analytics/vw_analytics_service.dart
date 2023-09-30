@@ -3,9 +3,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 class VWAnayticsService {
   final FirebaseAnalytics _analytics = FirebaseAnalytics.instance;
 
-  VWAnayticsService._() {
-    _analytics.setAnalyticsCollectionEnabled(true);
-  }
+  VWAnayticsService._();
 
   static VWAnayticsService get i => VWAnayticsService._();
 

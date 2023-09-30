@@ -1,14 +1,18 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 
 class VWCrashlyticsService {
   final FirebaseCrashlytics _crashlytics = FirebaseCrashlytics.instance;
 
   VWCrashlyticsService._() {
-    _crashlytics.setCrashlyticsCollectionEnabled(true);
+    _initCrashlytics();
   }
 
   static VWCrashlyticsService get i => VWCrashlyticsService._();
+
+  Future<void> _initCrashlytics() async {
+    await _crashlytics.setCrashlyticsCollectionEnabled(!kDebugMode);
+  }
 
   void recordError(exception, {StackTrace? stack, bool fatal = false}) {
     _crashlytics.recordError(
