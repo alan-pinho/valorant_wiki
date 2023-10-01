@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:valowiki/configs/themes/vw_light_theme.dart';
+import 'package:valowiki/shared/themes/vw_light_theme.dart';
 
 TextTheme get textTheme => const TextTheme(
       displayLarge: TextStyle(color: secondary),

@@ -11,11 +11,11 @@ import 'package:intl/intl.dart';
 import 'package:logging/logging.dart';
 import 'package:valowiki/configs/firebase/analytics/vw_analytics_navigator_observer.dart';
 import 'package:valowiki/configs/firebase/crashlytics/vw_crashlytics_service.dart';
-import 'package:valowiki/configs/themes/theme.dart';
-import 'package:valowiki/dependencies_injection.dart';
+import 'package:valowiki/shared/themes/theme.dart';
+import 'package:valowiki/configs/dependencies_injections/dependencies_injection.dart';
 import 'package:valowiki/env.dart';
-import 'package:valowiki/pages/splash/splash_page.dart';
 import 'package:valowiki/routes.dart';
+import 'package:valowiki/views/splash/splash_page.dart';
 
 Future<void> main() async {
   await runZonedGuarded(() async {
