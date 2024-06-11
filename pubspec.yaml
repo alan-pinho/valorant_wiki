@@ -47,6 +47,6 @@ flutter:
     - assets/images/
 
   fonts:
-    - family: Roboto
+    - family: Valorant
       fonts:
         - asset: assets/fonts/valorant_font.ttf

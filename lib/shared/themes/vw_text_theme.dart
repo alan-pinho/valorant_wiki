@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:valowiki/shared/themes/vw_light_theme.dart';
 
 TextTheme get textTheme => const TextTheme(
-      displayLarge: TextStyle(color: secondary),
-      displayMedium: TextStyle(color: secondary),
-      displaySmall: TextStyle(color: secondary),
-      headlineLarge: TextStyle(color: secondary),
-      headlineMedium: TextStyle(color: secondary),
-      headlineSmall: TextStyle(color: secondary),
+      displayLarge: TextStyle(color: primary, fontFamily: 'Valorant'),
+      displayMedium: TextStyle(color: primary, fontFamily: 'Valorant'),
+      displaySmall: TextStyle(color: primary, fontFamily: 'Valorant'),
+      headlineLarge: TextStyle(color: secondary, fontFamily: 'Valorant'),
+      headlineMedium: TextStyle(color: secondary, fontFamily: 'Valorant'),
+      headlineSmall: TextStyle(color: secondary, fontFamily: 'Valorant'),
       titleLarge: TextStyle(color: secondary),
       titleMedium: TextStyle(color: secondary),
       titleSmall: TextStyle(color: secondary),

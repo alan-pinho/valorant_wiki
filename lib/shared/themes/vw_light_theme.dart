@@ -12,9 +12,8 @@ ColorScheme get themeLigth => const ColorScheme.light(
       shadow: grey4,
       errorContainer: error3,
       onErrorContainer: white,
-      surface: grey4,
+      surface: white,
       onSurface: black,
-      background: white,
     );
 
 const Color primary = Color(0xFFFF4655);
@@ -37,5 +36,7 @@ const Color error3 = Color(0xFFEF5350);
 const Color success = Color(0xFF388E3C);
 const Color success2 = Color(0xFF4CAF50);
 const Color success3 = Color(0xFF66BB6A);
+
+const Color yellowishOrange = Color(0xFFECE8E1);
 
 const Color transparent = Colors.transparent;
