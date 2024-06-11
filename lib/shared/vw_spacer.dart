@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 
 class VWSpacerVertical extends StatelessWidget {
-  final int height;
+  final double height;
   const VWSpacerVertical(this.height, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(height: 4 * height.toDouble());
+    return SizedBox(height: 8 * height);
   }
 }
 
 class VWSpacerHorizontal extends StatelessWidget {
-  final int width;
+  final double width;
   const VWSpacerHorizontal(this.width, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(width: 4 * width.toDouble());
+    return SizedBox(width: 8 * width);
   }
 }
