@@ -5,6 +5,8 @@ import 'package:valowiki/configs/firebase/firebase_options_prod.dart';
 
 class EnvironmentConfig {
   late final String apiLink;
+  late final String gitHubLink;
+  late final String linkedinLink;
   late final Flavor flavor;
   late final FirebaseOptions firebaseOptions;
   final PackageInfo packageInfo;
@@ -20,14 +22,16 @@ class EnvironmentConfig {
       flavor = Flavor.prod;
     }
 
+    apiLink = 'https://dash.valorant-api.com/';
+    gitHubLink = 'https://github.com/alan-pinho/';
+    linkedinLink = 'https://www.linkedin.com/in/alan-pinho/';
+
     switch (flavor) {
       case Flavor.local:
-        apiLink = 'https://dash.valorant-api.com/';
         firebaseOptions = DefaultFirebaseOptionsLocal.currentPlatform;
         break;
 
       case Flavor.prod:
-        apiLink = 'https://dash.valorant-api.com/';
         firebaseOptions = DefaultFirebaseOptionsProd.currentPlatform;
         break;
     }
