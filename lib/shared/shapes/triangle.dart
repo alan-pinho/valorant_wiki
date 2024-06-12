@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 
 class TriangleShape extends StatelessWidget {
   final Color? color;
+  final double size;
 
   const TriangleShape({
     super.key,
     this.color,
+    this.size = 80,
   });
 
   @override
@@ -16,8 +18,8 @@ class TriangleShape extends StatelessWidget {
         clipper: TriangleClipper(),
         child: Container(
           color: color,
-          height: 80,
-          width: 80,
+          height: size,
+          width: size,
         ),
       ),
     );
