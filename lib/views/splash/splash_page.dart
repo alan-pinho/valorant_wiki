@@ -1,7 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:get_it/get_it.dart';
 import 'package:valowiki/configs/app_locale.dart';
 import 'package:valowiki/shared/shapes/triangle.dart';
 import 'package:valowiki/shared/vw_loader.dart';
@@ -31,7 +30,6 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final location = GetIt.I<FlutterLocalization>();
     return Hero(
       tag: 'wikiHeader',
       child: Column(
@@ -49,7 +47,6 @@ class _Body extends StatelessWidget {
               const Spacer(),
               AutoSizeText(
                 maxLines: 1,
-                locale: location.currentLocale,
                 AppLocale.splashCenterText.getString(context),
                 style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontFamily:

@@ -3,18 +3,19 @@ import 'dart:developer';
 import 'dart:isolate';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 import 'package:logging/logging.dart';
+import 'package:valowiki/configs/dependencies_injections/dependencies_injection.dart';
 import 'package:valowiki/configs/firebase/analytics/vw_analytics_navigator_observer.dart';
 import 'package:valowiki/configs/firebase/crashlytics/vw_crashlytics_service.dart';
-import 'package:valowiki/shared/themes/theme.dart';
-import 'package:valowiki/configs/dependencies_injections/dependencies_injection.dart';
 import 'package:valowiki/env.dart';
 import 'package:valowiki/routes.dart';
+import 'package:valowiki/shared/themes/theme.dart';
 import 'package:valowiki/views/splash/splash_page.dart';
 
 Future<void> main() async {
@@ -40,15 +41,11 @@ Future<void> main() async {
     await Firebase.initializeApp(options: env.firebaseOptions);
 
     FlutterError.onError = (errorDetails) {
-      Logger('FlutterError').severe(
-        errorDetails.exception,
-        errorDetails,
-        errorDetails.stack,
-      );
+      FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
     };
 
     PlatformDispatcher.instance.onError = (error, stack) {
-      Logger('PlatformDispatcher').severe(error.toString(), error, stack);
+      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
       return true;
     };
 
