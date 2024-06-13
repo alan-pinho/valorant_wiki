@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:simple_animations/animation_builder/play_animation_builder.dart';
 import 'package:valowiki/configs/app_locale.dart';
 import 'package:valowiki/shared/shapes/triangle.dart';
 import 'package:valowiki/shared/vw_spacer.dart';
@@ -17,6 +17,7 @@ class LandingView extends StatelessWidget {
         children: [
           _Header(),
           _Body(),
+          _BodyMessage(),
           _Footer(),
         ],
       ),
@@ -32,10 +33,11 @@ class _Header extends StatelessWidget {
     final height = MediaQuery.of(context).size.height;
     return Column(
       children: [
-        PlayAnimationBuilder(
-          tween: Tween(begin: height * .1, end: height * .3),
+        Animate().custom(
           duration: const Duration(seconds: 1),
-          builder: (context, value, _) => Container(
+          begin: height * .1,
+          end: height * .3,
+          builder: (context, value, child) => Container(
             decoration: BoxDecoration(
               color: Theme.of(context).cardTheme.color,
             ),
@@ -67,41 +69,54 @@ class _Body extends StatelessWidget {
   Widget build(BuildContext context) {
     final yOffset = MediaQuery.of(context).size.height;
 
-    return PlayAnimationBuilder(
-      tween: Tween(begin: 0.0, end: yOffset * .35),
-      duration: const Duration(seconds: 1),
-      builder: (context, value, _) => Transform.translate(
-        offset: Offset(0, -value),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const VWSpacerVertical(4),
+        Center(
+          child: Text(
+            'vAlorant',
+            style: Theme.of(context).textTheme.displayLarge,
+          ),
+        ),
+        Row(
           children: [
-            const VWSpacerVertical(4),
-            Center(
-              child: Text(
-                'vAlorant',
-                style: Theme.of(context).textTheme.displayLarge,
-              ),
+            const Spacer(),
+            Text(
+              maxLines: 1,
+              AppLocale.splashCenterText.getString(context),
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontFamily:
+                        Theme.of(context).textTheme.displayMedium?.fontFamily,
+                  ),
             ),
-            Row(
-              children: [
-                const Spacer(),
-                Text(
-                  maxLines: 1,
-                  AppLocale.splashCenterText.getString(context),
-                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        fontFamily: Theme.of(context)
-                            .textTheme
-                            .displayMedium
-                            ?.fontFamily,
-                      ),
-                ),
-                const VWSpacerHorizontal(2),
-              ],
-            ),
+            const VWSpacerHorizontal(2),
           ],
         ),
+      ],
+    ).animate().moveY(
+          duration: const Duration(seconds: 1),
+          begin: 0.0,
+          end: -(yOffset * .35),
+        );
+  }
+}
+
+class _BodyMessage extends StatelessWidget {
+  const _BodyMessage();
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 40),
+        child: Text(
+          AppLocale.landingPageText.getString(context),
+          style: Theme.of(context).textTheme.titleMedium,
+          textAlign: TextAlign.center,
+        ),
       ),
-    );
+    ).animate().fadeIn(delay: const Duration(seconds: 1));
   }
 }
 
