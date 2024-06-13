@@ -9,4 +9,8 @@ ThemeData get theme => ThemeData(
     cardTheme: const CardTheme(
       color: yellowishOrange,
       surfaceTintColor: grey,
+    ),
+    appBarTheme: const AppBarTheme(
+      color: primary,
+      centerTitle: true,
     ));

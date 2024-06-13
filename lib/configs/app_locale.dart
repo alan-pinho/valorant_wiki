@@ -5,6 +5,9 @@ mixin AppLocale {
   static const String splashCenterText = 'splashCenterText';
   static const String splashFooter = 'splashFooter';
   static const String landingPageText = 'landingPageText';
+  static const String aboutPageName = 'aboutPageName';
+  static const String aboutPageContent = 'aboutPageContent';
+  static const String aboutValorantLabel = 'aboutValorantLabel';
 
   static const Map<String, dynamic> en = {
     title: 'Localization',
@@ -12,6 +15,10 @@ mixin AppLocale {
     splashFooter: 'Made by Alan Pinho',
     landingPageText:
         'Valorant is a free-to-play tactical first-person shooter game developed and published by Riot Games.',
+    aboutPageName: 'About the APP',
+    aboutPageContent:
+        'This app aims to present information about the game Valorant, a free-to-play tactical first-person shooter developed and published by Riot Games.\n\nThe application was created by Alan Pinho using the cross-platform development tool Flutter.',
+    aboutValorantLabel: 'The game',
   };
   static const Map<String, dynamic> pt = {
     title: 'Localização',
@@ -19,6 +26,10 @@ mixin AppLocale {
     splashFooter: 'Produzido por Alan Pinho',
     landingPageText:
         'Valorant é um jogo de tiro tático em primeira pessoa grátis para jogar, sendo desenvolvido e publicado pela a Riot Games.',
+    aboutPageName: 'Sobre o APP',
+    aboutPageContent:
+        'Este App visa apresentar informações sobre Valorant, jogo de tiro tático em primeira pessoa grátis para jogar, sendo desenvolvido e publicado pela a Riot Games.\n\nAplicativo criado por Alan Pinho, utilizando a ferramenta de desenvolvimento multiplataforma Flutter.',
+    aboutValorantLabel: 'O jogo',
   };
 }
 Future<FlutterLocalization> initLocation() async {
