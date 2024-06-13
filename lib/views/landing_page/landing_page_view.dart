@@ -5,11 +5,12 @@ import 'package:valowiki/configs/app_locale.dart';
 import 'package:valowiki/shared/buttons/vw_border_button.dart';
 import 'package:valowiki/shared/shapes/triangle.dart';
 import 'package:valowiki/shared/vw_spacer.dart';
+import 'package:valowiki/views/about/about_view.dart';
 import 'package:valowiki/views/splash/widgets/footer_sign.dart';
 
-class LandingView extends StatelessWidget {
-  static const String routeName = '/landing_view';
-  const LandingView({super.key});
+class LandingPageView extends StatelessWidget {
+  static const String routeName = '/landing_page';
+  const LandingPageView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -178,8 +179,10 @@ class _Action extends StatelessWidget {
     return Column(
       children: [
         VwBorderButton(
-          label: 'SOBRE O APP',
-          onPressed: () {},
+          label: AppLocale.aboutPageName.getString(context).toUpperCase(),
+          onPressed: () {
+            Navigator.of(context).pushNamed(AboutView.routeName);
+          },
         )
       ],
     ).animate().fadeIn(delay: const Duration(seconds: 1));
