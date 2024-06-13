@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:valowiki/views/splash/splash_page.dart';
+import 'package:valowiki/views/splash/splash_view.dart';
 
 Map<String, WidgetBuilder> get routes => <String, WidgetBuilder>{
-      SplashPage.routeName: (_) => const SplashPage(),
+      SplashView.routeName: (_) => const SplashView(),
     };

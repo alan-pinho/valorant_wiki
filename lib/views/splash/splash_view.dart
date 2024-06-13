@@ -1,25 +1,36 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:valowiki/configs/app_locale.dart';
+import 'package:valowiki/services/view_model_scope.dart';
 import 'package:valowiki/shared/shapes/triangle.dart';
 import 'package:valowiki/shared/vw_loader.dart';
 import 'package:valowiki/shared/vw_spacer.dart';
+import 'package:valowiki/views/landing_page/landing_view.dart';
+import 'package:valowiki/views/splash/splash_view_model.dart';
 import 'package:valowiki/views/splash/widgets/footer_sign.dart';
 
-class SplashPage extends StatelessWidget {
-  static const String routeName = 'splash';
-  const SplashPage({super.key});
+class SplashView extends StatelessWidget {
+  static const String routeName = '/splash';
+  const SplashView({super.key});
+
+  void navigate(BuildContext context) {
+    Navigator.of(context).pushNamed(LandingView.routeName);
+  }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Stack(
-        children: [
-          _Header(),
-          _Body(),
-          _Footer(),
-        ],
+    return Scaffold(
+      body: ViewModelScope(
+        create: (_) => SplashViewModel(
+          () => navigate(context),
+        ),
+        builder: (context, _) => const Stack(
+          children: [
+            _Header(),
+            _Body(),
+            _Footer(),
+          ],
+        ),
       ),
     );
   }
@@ -30,36 +41,33 @@ class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Hero(
-      tag: 'wikiHeader',
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Center(
-            child: Text(
-              'vAlorant',
-              style: Theme.of(context).textTheme.displayLarge,
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.max,
+      children: [
+        Center(
+          child: Text(
+            'vAlorant',
+            style: Theme.of(context).textTheme.displayLarge,
+          ),
+        ),
+        Row(
+          children: [
+            const Spacer(),
+            Text(
+              maxLines: 1,
+              AppLocale.splashCenterText.getString(context),
+              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                    fontFamily:
+                        Theme.of(context).textTheme.displayMedium?.fontFamily,
+                  ),
             ),
-          ),
-          Row(
-            children: [
-              const Spacer(),
-              AutoSizeText(
-                maxLines: 1,
-                AppLocale.splashCenterText.getString(context),
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                      fontFamily:
-                          Theme.of(context).textTheme.displayMedium?.fontFamily,
-                    ),
-              ),
-              const VWSpacerHorizontal(2),
-            ],
-          ),
-          const VWSpacerVertical(4),
-          const VWLoader()
-        ],
-      ),
+            const VWSpacerHorizontal(2),
+          ],
+        ),
+        const VWSpacerVertical(4),
+        const VWLoader()
+      ],
     );
   }
 }
@@ -69,10 +77,11 @@ class _Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return Column(
       children: [
         Container(
-          height: 100,
+          height: height * .1,
           decoration: BoxDecoration(
             color: Theme.of(context).cardTheme.color,
           ),
@@ -100,6 +109,7 @@ class _Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return Align(
       alignment: Alignment.bottomCenter,
       child: Column(
@@ -115,7 +125,7 @@ class _Footer extends StatelessWidget {
             ),
           ),
           Container(
-            height: 100,
+            height: height * .1,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               color: Theme.of(context).cardTheme.surfaceTintColor,
