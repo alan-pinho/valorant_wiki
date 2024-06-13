@@ -16,7 +16,7 @@ import 'package:valowiki/configs/firebase/crashlytics/vw_crashlytics_service.dar
 import 'package:valowiki/env.dart';
 import 'package:valowiki/routes.dart';
 import 'package:valowiki/shared/themes/theme.dart';
-import 'package:valowiki/views/splash/splash_page.dart';
+import 'package:valowiki/views/splash/splash_view.dart';
 
 Future<void> main() async {
   await runZonedGuarded(() async {
@@ -25,7 +25,10 @@ Future<void> main() async {
 
     Logger.root.level = kDebugMode ? Level.FINE : Level.INFO;
     Logger.root.onRecord.listen((record) {
-      log('[${record.level.name}] [${record.time}]: ${record.message}');
+      log(
+        '[${record.level.name}] - ${record.message}',
+        name: record.loggerName,
+      );
 
       if (record.error != null) {
         VWCrashlyticsService.i.recordError(
@@ -80,14 +83,13 @@ class MyApp extends StatelessWidget {
       locale: localization.currentLocale,
       supportedLocales: localization.supportedLocales,
       localizationsDelegates: localization.localizationsDelegates,
-      initialRoute: SplashPage.routeName,
       navigatorObservers: [VWAnalyticsRouteObserver()],
       onGenerateRoute: (settings) {
         return MaterialPageRoute(
           builder: (context) => routes[settings.name]!(context),
         );
       },
-      home: const SplashPage(),
+      home: const SplashView(),
     );
   }
 }
