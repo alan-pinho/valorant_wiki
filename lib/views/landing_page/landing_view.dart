@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:valowiki/configs/app_locale.dart';
+import 'package:valowiki/shared/buttons/vw_border_button.dart';
 import 'package:valowiki/shared/shapes/triangle.dart';
 import 'package:valowiki/shared/vw_spacer.dart';
 import 'package:valowiki/views/splash/widgets/footer_sign.dart';
@@ -131,6 +132,14 @@ class _Footer extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
+          Transform.translate(
+            offset: const Offset(0, 72),
+            child: VwBorderButton(
+              label: 'CONHEÇA O JOGO',
+              onPressed: () {},
+              backgrounColor: Theme.of(context).colorScheme.primary,
+            ),
+          ).animate().fadeIn(delay: const Duration(seconds: 1)),
           Align(
             alignment: Alignment.centerRight,
             child: Transform.flip(
@@ -141,7 +150,7 @@ class _Footer extends StatelessWidget {
             ),
           ),
           Container(
-            height: height * .1,
+            height: height * .11,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               color: Theme.of(context).cardTheme.surfaceTintColor,
@@ -149,6 +158,7 @@ class _Footer extends StatelessWidget {
             child: const Column(
               children: [
                 Spacer(),
+                _Action(),
                 SplashFooterSign(),
                 VWSpacerVertical(2),
               ],
@@ -157,5 +167,21 @@ class _Footer extends StatelessWidget {
         ],
       ),
     );
+  }
+}
+
+class _Action extends StatelessWidget {
+  const _Action();
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        VwBorderButton(
+          label: 'SOBRE O APP',
+          onPressed: () {},
+        )
+      ],
+    ).animate().fadeIn(delay: const Duration(seconds: 1));
   }
 }

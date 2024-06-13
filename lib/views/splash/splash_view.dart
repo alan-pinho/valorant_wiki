@@ -125,7 +125,7 @@ class _Footer extends StatelessWidget {
             ),
           ),
           Container(
-            height: height * .1,
+            height: height * .11,
             width: MediaQuery.of(context).size.width,
             decoration: BoxDecoration(
               color: Theme.of(context).cardTheme.surfaceTintColor,
