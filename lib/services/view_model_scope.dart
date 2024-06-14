@@ -27,7 +27,7 @@ class _ViewModelScopeState<T extends Object> extends State<ViewModelScope<T>> {
     viewModel = widget.create(context);
 
     logger.fine(
-      'Creating View Model Scope<${T.toString()}> ---- ${runtimeType.hashCode}',
+      'Creating View Model Scope <${T.toString()}> ---- ${runtimeType.hashCode}',
     );
     getIt.registerSingleton<T>(viewModel);
     super.initState();

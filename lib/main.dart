@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'dart:isolate';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
@@ -44,11 +43,11 @@ Future<void> main() async {
     await Firebase.initializeApp(options: env.firebaseOptions);
 
     FlutterError.onError = (errorDetails) {
-      FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
+      VWCrashlyticsService.i.recordFlutterFatalError(errorDetails);
     };
 
     PlatformDispatcher.instance.onError = (error, stack) {
-      FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+      VWCrashlyticsService.i.recordError(error, stack: stack, fatal: true);
       return true;
     };
 

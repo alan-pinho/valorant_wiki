@@ -14,7 +14,7 @@ class SplashView extends StatelessWidget {
   const SplashView({super.key});
 
   void navigate(BuildContext context) {
-    Navigator.of(context).pushNamed(LandingPageView.routeName);
+    Navigator.of(context).pushReplacementNamed(LandingPageView.routeName);
   }
 
   @override
@@ -28,10 +28,10 @@ class SplashView extends StatelessWidget {
           children: [
             _Header(),
             _Body(),
-            VWSplashFooter(),
           ],
         ),
       ),
+      bottomNavigationBar: const VWSplashFooter(),
     );
   }
 }
