@@ -136,7 +136,7 @@ class _Footer extends StatelessWidget {
           Transform.translate(
             offset: const Offset(0, 72),
             child: VwBorderButton(
-              label: 'CONHEÇA O JOGO',
+              label: AppLocale.learnAboutTheGameButton.getString(context),
               onPressed: () {},
               backgrounColor: Theme.of(context).colorScheme.primary,
             ),
@@ -179,7 +179,7 @@ class _Action extends StatelessWidget {
     return Column(
       children: [
         VwBorderButton(
-          label: AppLocale.aboutPageName.getString(context).toUpperCase(),
+          label: AppLocale.aboutTheAppButton.getString(context),
           onPressed: () {
             Navigator.of(context).pushNamed(AboutView.routeName);
           },
