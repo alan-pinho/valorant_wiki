@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:get_it/get_it.dart';
 import 'package:valowiki/configs/app_locale.dart';
 import 'package:valowiki/services/view_model_scope.dart';
 import 'package:valowiki/shared/footer/vw_splash_footer.dart';
@@ -13,8 +15,17 @@ class SplashView extends StatelessWidget {
   static const String routeName = '/splash';
   const SplashView({super.key});
 
-  void navigate(BuildContext context) {
-    Navigator.of(context).pushReplacementNamed(LandingPageView.routeName);
+  void navigate(BuildContext context, SplashRouteNavigate route) {
+    switch (route) {
+      case SplashRouteNavigate.landingPage:
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          Navigator.of(context).pushReplacementNamed(LandingPageView.routeName);
+        });
+        break;
+      case SplashRouteNavigate.homePage:
+        //TODO adicionar homePage
+        break;
+    }
   }
 
   @override
@@ -22,7 +33,8 @@ class SplashView extends StatelessWidget {
     return Scaffold(
       body: ViewModelScope(
         create: (_) => SplashViewModel(
-          () => navigate(context),
+          GetIt.I(),
+          (route) => navigate(context, route),
         ),
         builder: (context, _) => const Stack(
           children: [
