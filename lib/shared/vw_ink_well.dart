@@ -13,6 +13,8 @@ class VWInkWell extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      overlayColor: const WidgetStatePropertyAll(Colors.transparent),
+      splashColor: Colors.transparent,
       onTap: onTap,
       child: child,
     );

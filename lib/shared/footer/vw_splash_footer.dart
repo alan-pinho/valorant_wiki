@@ -23,11 +23,8 @@ class VWSplashFooter extends StatelessWidget {
             children: [
               Align(
                 alignment: Alignment.centerRight,
-                child: Transform.flip(
-                  flipX: true,
-                  child: TriangleShape(
-                    color: Theme.of(context).cardTheme.surfaceTintColor,
-                  ),
+                child: TriangleShape(
+                  color: Theme.of(context).cardTheme.surfaceTintColor,
                 ),
               ),
               Container(

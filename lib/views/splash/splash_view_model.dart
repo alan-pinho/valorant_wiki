@@ -24,8 +24,10 @@ abstract class SplashViewModelBase with Store {
   @observable
   bool firstView = false;
 
-  void _getPreferences() {
+  Future<void> _getPreferences() async {
     firstView = _preferences.getFistLookValue();
+
+    await Future.delayed(const Duration(seconds: 4));
 
     final route = firstView
         ? SplashRouteNavigate.landingPage

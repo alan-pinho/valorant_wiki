@@ -16,16 +16,16 @@ class SplashView extends StatelessWidget {
   const SplashView({super.key});
 
   void navigate(BuildContext context, SplashRouteNavigate route) {
-    switch (route) {
-      case SplashRouteNavigate.landingPage:
-        SchedulerBinding.instance.addPostFrameCallback((_) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
+      switch (route) {
+        case SplashRouteNavigate.landingPage:
           Navigator.of(context).pushReplacementNamed(LandingPageView.routeName);
-        });
-        break;
-      case SplashRouteNavigate.homePage:
-        //TODO adicionar homePage
-        break;
-    }
+          break;
+        case SplashRouteNavigate.homePage:
+          //TODO adicionar homePage
+          break;
+      }
+    });
   }
 
   @override
@@ -102,12 +102,9 @@ class _Header extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Container(
             color: Theme.of(context).cardTheme.color,
-            child: Transform.flip(
-              flipX: true,
-              child: TriangleShape(
-                size: 56,
-                color: Theme.of(context).cardColor,
-              ),
+            child: TriangleShape(
+              size: 56,
+              color: Theme.of(context).cardColor,
             ),
           ),
         ),

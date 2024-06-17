@@ -12,7 +12,7 @@ class SharedPreferencesService {
   }
 
   Future<void> fistLook() async {
-    await _prefs.setBool('fistLook', true);
+    await _prefs.setBool('fistLook', false);
   }
 
   bool getFistLookValue() {

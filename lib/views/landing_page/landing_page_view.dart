@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:get_it/get_it.dart';
 import 'package:valowiki/configs/app_locale.dart';
+import 'package:valowiki/services/navigator_service.dart';
+import 'package:valowiki/services/shared_preferences_service.dart';
 import 'package:valowiki/shared/buttons/vw_border_button.dart';
 import 'package:valowiki/shared/shapes/triangle.dart';
+import 'package:valowiki/shared/vw_future_overlay.dart';
 import 'package:valowiki/shared/vw_spacer.dart';
 import 'package:valowiki/views/about/about_view.dart';
+import 'package:valowiki/views/home/home_view.dart';
 import 'package:valowiki/views/splash/widgets/footer_sign.dart';
 
 class LandingPageView extends StatelessWidget {
@@ -15,11 +20,15 @@ class LandingPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: Stack(
+      body: Column(
         children: [
           _Header(),
           _Body(),
-          _BodyMessage(),
+        ],
+      ),
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
           _Footer(),
         ],
       ),
@@ -50,22 +59,20 @@ class _Header extends StatelessWidget {
           alignment: Alignment.centerLeft,
           child: Container(
             color: Theme.of(context).cardTheme.color,
-            child: Transform.flip(
-              flipX: true,
-              child: TriangleShape(
-                size: 56,
-                color: Theme.of(context).cardColor,
-              ),
+            child: TriangleShape(
+              size: 56,
+              color: Theme.of(context).cardColor,
             ),
           ),
-        )
+        ),
+        const _LandingImage(),
       ],
     );
   }
 }
 
-class _Body extends StatelessWidget {
-  const _Body();
+class _LandingImage extends StatelessWidget {
+  const _LandingImage();
 
   @override
   Widget build(BuildContext context) {
@@ -74,51 +81,49 @@ class _Body extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        const VWSpacerVertical(4),
-        Center(
-          child: Text(
-            'vAlorant',
-            style: Theme.of(context).textTheme.displayLarge,
-          ),
+        Text(
+          'vAlorant',
+          style: Theme.of(context).textTheme.displayLarge,
         ),
-        Row(
-          children: [
-            const Spacer(),
-            Text(
-              maxLines: 1,
+        Align(
+          alignment: Alignment.centerRight,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Text(
               AppLocale.splashCenterText.getString(context),
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
                     fontFamily:
                         Theme.of(context).textTheme.displayMedium?.fontFamily,
                   ),
             ),
-            const VWSpacerHorizontal(2),
-          ],
+          ),
         ),
       ],
     ).animate().moveY(
           duration: const Duration(seconds: 1),
           begin: 0.0,
-          end: -(yOffset * .35),
+          end: -(yOffset * .24),
         );
   }
 }
 
-class _BodyMessage extends StatelessWidget {
-  const _BodyMessage();
+class _Body extends StatelessWidget {
+  const _Body();
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40),
-        child: Text(
-          AppLocale.landingPageText.getString(context),
-          style: Theme.of(context).textTheme.titleMedium,
-          textAlign: TextAlign.center,
-        ),
-      ),
-    ).animate().fadeIn(delay: const Duration(seconds: 1));
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 40),
+          child: Text(
+            AppLocale.landingPageText.getString(context),
+            style: Theme.of(context).textTheme.titleMedium,
+            textAlign: TextAlign.center,
+          ),
+        ).animate().fadeIn(delay: const Duration(seconds: 1)),
+      ],
+    );
   }
 }
 
@@ -127,46 +132,46 @@ class _Footer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final height = MediaQuery.of(context).size.height;
-    return Align(
-      alignment: Alignment.bottomCenter,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Transform.translate(
-            offset: const Offset(0, 72),
-            child: VwBorderButton(
-              label: AppLocale.learnAboutTheGameButton.getString(context),
-              onPressed: () {},
-              backgrounColor: Theme.of(context).colorScheme.primary,
-            ),
-          ).animate().fadeIn(delay: const Duration(seconds: 1)),
-          Align(
-            alignment: Alignment.centerRight,
-            child: Transform.flip(
-              flipX: true,
-              child: TriangleShape(
-                color: Theme.of(context).cardTheme.surfaceTintColor,
-              ),
-            ),
+    final yOffset = MediaQuery.of(context).size.height;
+    final preferences = GetIt.I<SharedPreferencesService>();
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Align(
+          alignment: Alignment.bottomRight,
+          child: TriangleShape(
+            translate: 48,
+            color: Theme.of(context).cardTheme.surfaceTintColor,
           ),
-          Container(
-            height: height * .11,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              color: Theme.of(context).cardTheme.surfaceTintColor,
-            ),
-            child: const Column(
-              children: [
-                Spacer(),
-                _Action(),
-                SplashFooterSign(),
-                VWSpacerVertical(2),
-              ],
-            ),
+        ),
+        VWFutureOverlay(
+          future: () async {
+            await preferences.fistLook();
+            NavigatorService.of(context).pushNamed(HomeView.routeName);
+          },
+          child: (action) => VwBorderButton(
+            label: AppLocale.learnAboutTheGameButton.getString(context),
+            onPressed: action,
+            backgrounColor: Theme.of(context).colorScheme.primary,
           ),
-        ],
-      ),
+        ).animate().fadeIn(delay: const Duration(seconds: 1)),
+        Container(
+          height: yOffset * .11,
+          width: MediaQuery.of(context).size.width,
+          decoration: BoxDecoration(
+            color: Theme.of(context).cardTheme.surfaceTintColor,
+          ),
+          child: const Column(
+            children: [
+              Spacer(),
+              _Action(),
+              SplashFooterSign(),
+              VWSpacerVertical(2),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

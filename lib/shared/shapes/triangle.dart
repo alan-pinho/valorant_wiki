@@ -3,23 +3,28 @@ import 'package:flutter/material.dart';
 class TriangleShape extends StatelessWidget {
   final Color? color;
   final double size;
+  final double translate;
 
   const TriangleShape({
     super.key,
     this.color,
+    this.translate = 1,
     this.size = 80,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Transform.translate(
-      offset: const Offset(0, 1),
-      child: ClipPath(
-        clipper: TriangleClipper(),
-        child: Container(
-          color: color,
-          height: size,
-          width: size,
+    return Transform.flip(
+      flipX: true,
+      child: Transform.translate(
+        offset: Offset(0, translate),
+        child: ClipPath(
+          clipper: TriangleClipper(),
+          child: Container(
+            color: color,
+            height: size,
+            width: size,
+          ),
         ),
       ),
     );
