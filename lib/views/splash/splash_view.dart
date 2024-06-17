@@ -8,6 +8,7 @@ import 'package:valowiki/shared/footer/vw_splash_footer.dart';
 import 'package:valowiki/shared/shapes/triangle.dart';
 import 'package:valowiki/shared/vw_loader.dart';
 import 'package:valowiki/shared/vw_spacer.dart';
+import 'package:valowiki/views/home/home_view.dart';
 import 'package:valowiki/views/landing_page/landing_page_view.dart';
 import 'package:valowiki/views/splash/splash_view_model.dart';
 
@@ -22,7 +23,7 @@ class SplashView extends StatelessWidget {
           Navigator.of(context).pushReplacementNamed(LandingPageView.routeName);
           break;
         case SplashRouteNavigate.homePage:
-          //TODO adicionar homePage
+          Navigator.of(context).pushReplacementNamed(HomeView.routeName);
           break;
       }
     });
