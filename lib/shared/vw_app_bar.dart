@@ -17,7 +17,10 @@ class VWAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: Text(
         pageName,
-        style: Theme.of(context).textTheme.titleMedium,
+        style: Theme.of(context)
+            .textTheme
+            .titleLarge
+            ?.copyWith(color: Theme.of(context).colorScheme.surface),
       ),
       actions: [
         Padding(
@@ -26,7 +29,7 @@ class VWAppBar extends StatelessWidget implements PreferredSizeWidget {
             'assets/images/logo_small.svg',
             height: 40,
             colorFilter: ColorFilter.mode(
-              Theme.of(context).colorScheme.secondary,
+              Theme.of(context).colorScheme.onSecondary,
               BlendMode.srcIn,
             ),
           ),

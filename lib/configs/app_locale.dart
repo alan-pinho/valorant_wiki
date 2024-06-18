@@ -16,6 +16,11 @@ mixin AppLocale {
 
   static const String homeAppBar = 'homeAppBar';
 
+  static const String bottomNavigationBarNews = 'bottomNavigationBarNews';
+  static const String bottomNavigationBarHome = 'bottomNavigationBarHome';
+  static const String bottomNavigationBarWishlist =
+      'bottomNavigationBarWishlist';
+
   static const Map<String, dynamic> en = {
     title: 'Localization',
     //SplashView
@@ -33,6 +38,9 @@ mixin AppLocale {
     aboutValorantLabel: 'The game',
     //HomeView
     homeAppBar: 'Home',
+    bottomNavigationBarNews: 'News',
+    bottomNavigationBarHome: 'Home',
+    bottomNavigationBarWishlist: 'Wishlist',
   };
   static const Map<String, dynamic> pt = {
     title: 'Localização',
@@ -51,6 +59,9 @@ mixin AppLocale {
     aboutValorantLabel: 'O jogo',
     //HomeView
     homeAppBar: 'Início',
+    bottomNavigationBarNews: 'Notícias',
+    bottomNavigationBarHome: 'Início',
+    bottomNavigationBarWishlist: 'Lista de desejo',
   };
 }
 Future<FlutterLocalization> initLocation() async {

@@ -10,7 +10,19 @@ ThemeData get theme => ThemeData(
       color: yellowishOrange,
       surfaceTintColor: grey,
     ),
-    appBarTheme: const AppBarTheme(
-      color: primary,
+    appBarTheme: AppBarTheme(
+      color: themeLigth.primary,
       centerTitle: true,
+    ),
+    navigationBarTheme: NavigationBarThemeData(
+      backgroundColor: themeLigth.secondaryContainer,
+      surfaceTintColor: Colors.transparent,
+      indicatorColor: themeLigth.secondaryContainer,
+      iconTheme: WidgetStatePropertyAll(IconThemeData(
+        color: themeLigth.onSecondaryContainer,
+      )),
+      labelTextStyle: WidgetStatePropertyAll(
+        textTheme.bodySmall?.copyWith(color: themeLigth.onSecondaryContainer),
+      ),
+      overlayColor: WidgetStatePropertyAll(themeLigth.secondaryContainer),
     ));
