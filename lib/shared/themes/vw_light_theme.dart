@@ -16,6 +16,8 @@ ColorScheme get themeLigth => const ColorScheme.light(
       onSurface: black,
       secondaryContainer: grey,
       onSecondaryContainer: white,
+      tertiaryContainer: tertiary,
+      onTertiaryContainer: black,
     );
 
 const Color primary = Color(0xFFFF4655);
