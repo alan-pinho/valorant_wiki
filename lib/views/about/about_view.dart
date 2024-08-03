@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
-import 'package:valowiki/configs/app_locale.dart';
+import 'package:valowiki/configs/app_locale/app_locale.dart';
 import 'package:valowiki/shared/buttons/vw_linked_button.dart';
 import 'package:valowiki/shared/footer/vw_splash_footer.dart';
 import 'package:valowiki/shared/vw_app_bar.dart';

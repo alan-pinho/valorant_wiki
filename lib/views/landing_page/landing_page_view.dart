@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:get_it/get_it.dart';
-import 'package:valowiki/configs/app_locale.dart';
+import 'package:valowiki/configs/app_locale/app_locale.dart';
 import 'package:valowiki/services/navigator_service.dart';
 import 'package:valowiki/services/shared_preferences_service.dart';
 import 'package:valowiki/shared/buttons/vw_border_button.dart';

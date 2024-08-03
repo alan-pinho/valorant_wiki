@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get_it/get_it.dart';
-import 'package:valowiki/configs/app_locale.dart';
+import 'package:valowiki/configs/app_locale/app_locale.dart';
 import 'package:valowiki/env.dart';
 import 'package:valowiki/services/url_launcher_service.dart';
 import 'package:valowiki/shared/vw_ink_well.dart';

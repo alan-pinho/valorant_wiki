@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:get_it/get_it.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:valowiki/configs/app_locale.dart';
+import 'package:valowiki/configs/app_locale/app_locale.dart';
 import 'package:valowiki/env.dart';
 import 'package:valowiki/services/shared_preferences_service.dart';
 
