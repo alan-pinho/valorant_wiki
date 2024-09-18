@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:developer';
+import 'dart:io';
 import 'dart:isolate';
 
 import 'package:firebase_core/firebase_core.dart';
@@ -20,7 +21,7 @@ import 'package:valowiki/views/splash/splash_view.dart';
 Future<void> main() async {
   await runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
-    Intl.defaultLocale = 'pt_BR';
+    Intl.defaultLocale = Platform.localeName;
 
     Logger.root.level = kDebugMode ? Level.FINE : Level.INFO;
     Logger.root.onRecord.listen((record) {

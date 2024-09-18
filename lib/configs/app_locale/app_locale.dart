@@ -1,9 +1,11 @@
 import 'package:flutter_localization/flutter_localization.dart';
+import 'package:intl/intl.dart';
 import 'package:valowiki/configs/app_locale/en_us/en_app_locale.dart';
 import 'package:valowiki/configs/app_locale/pt_br/pt_app_locale.dart';
 
 mixin AppLocale {
   static const String title = 'title';
+  static const String apiLocale = 'apiLocale';
   static const String splashCenterText = 'splashCenterText';
   static const String splashFooter = 'splashFooter';
   static const String landingPageText = 'landingPageText';
@@ -24,7 +26,10 @@ Future<FlutterLocalization> initLocation() async {
     MapLocale('pt', PtAppLocale().pt, countryCode: 'BR'),
     MapLocale('en', EnAppLocale().en, countryCode: 'US'),
   ];
-  await localization.init(mapLocales: mapLocales, initLanguageCode: 'pt');
+  await localization.init(
+    mapLocales: mapLocales,
+    initLanguageCode: Intl.shortLocale(Intl.systemLocale),
+  );
 
   return localization;
 }

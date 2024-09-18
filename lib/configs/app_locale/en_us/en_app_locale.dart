@@ -7,6 +7,7 @@ import 'package:valowiki/configs/app_locale/en_us/splash_locale.dart';
 class EnAppLocale with AppLocale {
   Map<String, dynamic> en = {
     AppLocale.title: 'Localization',
+    AppLocale.apiLocale: 'en-US',
     ...SplashLocaleEn.en,
     ...LandingLocaleEn.en,
     ...AboutLocaleEn.en,

@@ -7,6 +7,7 @@ import 'package:valowiki/configs/app_locale/pt_br/splash_locale.dart';
 class PtAppLocale with AppLocale {
   Map<String, dynamic> pt = {
     AppLocale.title: 'Localização',
+    AppLocale.apiLocale: 'pt-BR',
     ...SplashLocalePt.pt,
     ...LandingLocalePt.pt,
     ...AboutLocalePt.pt,
