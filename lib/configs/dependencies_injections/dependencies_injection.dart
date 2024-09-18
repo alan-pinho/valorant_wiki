@@ -5,6 +5,7 @@ import 'package:get_it/get_it.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:valowiki/configs/app_locale/app_locale.dart';
 import 'package:valowiki/core/http/dio_http_service.dart';
+import 'package:valowiki/core/http/services/agents_http_service.dart';
 import 'package:valowiki/core/local/services/shared_preferences_service.dart';
 import 'package:valowiki/env.dart';
 
@@ -27,6 +28,9 @@ Future<void> initDependenciesInjection() async {
 
   //http
   _getIt.registerLazySingleton<DioHttpService>(() => DioHttpService(_getIt()));
+  _getIt.registerLazySingleton<AgentsHttpService>(
+    () => AgentsHttpService(_getIt(), _getIt(), _getIt()),
+  );
 }
 
 Future<SharedPreferencesService> getSharedPreferences() async {

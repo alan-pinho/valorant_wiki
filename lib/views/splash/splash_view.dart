@@ -3,7 +3,7 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:get_it/get_it.dart';
 import 'package:valowiki/configs/app_locale/app_locale.dart';
-import 'package:valowiki/services/view_model_scope.dart';
+import 'package:valowiki/core/local/services/view_model_scope.dart';
 import 'package:valowiki/shared/footer/vw_splash_footer.dart';
 import 'package:valowiki/shared/shapes/triangle.dart';
 import 'package:valowiki/shared/vw_loader.dart';

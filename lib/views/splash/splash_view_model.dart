@@ -1,5 +1,5 @@
 import 'package:mobx/mobx.dart';
-import 'package:valowiki/services/shared_preferences_service.dart';
+import 'package:valowiki/core/local/services/shared_preferences_service.dart';
 
 part 'splash_view_model.g.dart';
 
