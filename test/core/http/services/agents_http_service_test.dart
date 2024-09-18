@@ -33,9 +33,16 @@ void main() {
   });
 
   test('Listar personagens', () async {
-    final agents = await agentsHttpService.agentList();
+    final agents = await agentsHttpService.listAgents();
 
     expect(agents.length, 25);
     expect(agents.first, isInstanceOf<AgentModel>());
+  });
+
+  test('Obter personagem por id', () async {
+    final agents = await agentsHttpService.listAgents();
+    final agent = await agentsHttpService.getAgent(agents.first.uuid);
+
+    expect(agent, isInstanceOf<AgentModel>());
   });
 }
