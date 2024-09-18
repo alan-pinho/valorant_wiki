@@ -11,7 +11,7 @@ class VWAnayticsService {
     _analytics.setUserId(id: idCliente, callOptions: callOptions);
   }
 
-  void logEvent(String name, {Map<String, Object?>? parameters}) {
+  void logEvent(String name, {Map<String, Object>? parameters}) {
     _analytics.logEvent(name: name, parameters: parameters);
   }
 

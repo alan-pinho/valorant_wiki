@@ -22,7 +22,7 @@ class EnvironmentConfig {
       flavor = Flavor.prod;
     }
 
-    apiLink = 'https://dash.valorant-api.com/';
+    apiLink = 'https://valorant-api.com/';
     gitHubLink = 'https://github.com/alan-pinho/';
     linkedinLink = 'https://www.linkedin.com/in/alan-pinho/';
 
