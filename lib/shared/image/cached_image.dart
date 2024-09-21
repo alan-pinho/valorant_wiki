@@ -14,6 +14,7 @@ class CachedImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
+      fit: BoxFit.fill,
       placeholder: (context, url) {
         return const _Placeholder();
       },

@@ -58,8 +58,8 @@ flutter:
     - assets/icons/roles/
     - assets/images/
     - assets/images/logos/
-    - assets/images/carousel/en/
-    - assets/images/carousel/pt/
+    - assets/images/en/carousel/
+    - assets/images/pt/carousel/
 
   fonts:
     - family: Valorant

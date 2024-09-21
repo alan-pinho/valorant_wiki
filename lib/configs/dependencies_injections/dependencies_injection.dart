@@ -27,7 +27,7 @@ Future<void> initDependenciesInjection() async {
   _getIt.registerSingleton<PackageInfo>(packageInfo);
   _getIt.registerSingleton<SharedPreferencesService>(sharedPreferences);
   _getIt.registerSingleton<Dio>(dio);
-  _getIt.registerSingleton<GlobalStore>(_getIt());
+  _getIt.registerSingleton<GlobalStore>(GlobalStore(_getIt()));
 
   //http
   _getIt.registerLazySingleton<DioHttpService>(() => DioHttpService(_getIt()));

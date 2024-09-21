@@ -4,7 +4,7 @@ import 'package:valowiki/configs/app_locale/app_locale.dart';
 import 'package:valowiki/shared/footer/vw_bottom_navigation_bar.dart';
 import 'package:valowiki/shared/vw_app_bar.dart';
 import 'package:valowiki/shared/vw_spacer.dart';
-import 'package:valowiki/views/home/widgets/home_card_list.dart';
+import 'package:valowiki/views/home/widgets/home_carousel.dart';
 
 class HomeView extends StatelessWidget {
   static const String routeName = '/home';
@@ -30,7 +30,7 @@ class _Body extends StatelessWidget {
     return ListView(
       children: const [
         VWSpacerVertical(2),
-        HomeCardList(),
+        HomeCarousel(),
       ],
     );
   }
