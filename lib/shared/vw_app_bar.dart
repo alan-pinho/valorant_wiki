@@ -26,7 +26,7 @@ class VWAppBar extends StatelessWidget implements PreferredSizeWidget {
         Padding(
           padding: const EdgeInsets.only(right: 8.0),
           child: SvgPicture.asset(
-            'assets/images/logo_small.svg',
+            'assets/images/logos/logo_small.svg',
             height: 40,
             colorFilter: ColorFilter.mode(
               Theme.of(context).colorScheme.onSecondary,
