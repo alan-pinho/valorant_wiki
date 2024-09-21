@@ -36,6 +36,8 @@ dependencies:
   mobkit_dashed_border: ^0.0.6
   win32: ^5.5.4
   json_annotation: ^4.9.0
+  carousel_slider: ^5.0.0
+  cached_network_image: ^3.4.1
 
 dev_dependencies:
   flutter_test:
@@ -45,7 +47,7 @@ dev_dependencies:
   json_serializable: ^6.7.1
   flutter_launcher_icons: ^0.13.1
   mobx_codegen: ^2.6.1
-  analyzer: ^6.4.1
+  analyzer: ^6.7.0
 
 flutter:
   uses-material-design: true
@@ -53,7 +55,11 @@ flutter:
   assets:
     - assets/fonts/
     - assets/icons/
+    - assets/icons/roles/
     - assets/images/
+    - assets/images/logos/
+    - assets/images/carousel/en/
+    - assets/images/carousel/pt/
 
   fonts:
     - family: Valorant
