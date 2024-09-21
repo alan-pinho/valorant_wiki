@@ -1,35 +1,33 @@
-import 'package:dio/dio.dart';
 import 'package:flutter_localization/flutter_localization.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
 import 'package:package_info_plus/package_info_plus.dart';
-import 'package:valowiki/core/http/dio_http_service.dart';
+import 'package:valowiki/core/http/clients/valorant_api_client.dart';
 import 'package:valowiki/core/http/models/agent_model.dart';
 import 'package:valowiki/core/http/services/agents_http_service.dart';
 import 'package:valowiki/env.dart';
+import 'package:valowiki/stores/global_store.dart';
 
-class MockFlutterLocalization extends Mock implements FlutterLocalization {}
+class FlutterLocalizationMock extends Mock implements FlutterLocalization {}
 
 void main() {
   late AgentsHttpService agentsHttpService;
-  late DioHttpService dioHttpService;
-  late EnvironmentConfig environmentConfig;
-  late Dio dio;
+  late EnvironmentConfig env;
+  late ValorantApiClient valorantApiClient;
+  late GlobalStore globalStore;
+  late FlutterLocalization localization;
   setUp(() async {
-    dio = Dio();
-    dioHttpService = DioHttpService(dio);
-    environmentConfig = EnvironmentConfig(PackageInfo(
+    localization = FlutterLocalizationMock();
+    globalStore = GlobalStore(localization);
+    env = EnvironmentConfig(PackageInfo(
       appName: 'ValoWiki',
       buildNumber: '0',
       packageName: 'com.test.local',
       version: '0.0.0',
       buildSignature: 'com.test.local',
     ));
-    agentsHttpService = AgentsHttpService(
-      dioHttpService,
-      MockFlutterLocalization(),
-      environmentConfig,
-    );
+    valorantApiClient = ValorantApiClient(globalStore, env);
+    agentsHttpService = AgentsHttpService(valorantApiClient);
   });
 
   test('Listar personagens', () async {

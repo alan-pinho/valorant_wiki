@@ -6,6 +6,8 @@ class DioHttpService implements IHttpClient {
 
   DioHttpService(this._dio);
 
+  Dio get dio => _dio;
+
   @override
   Future<HttpResponse> delete(
     String path,
@@ -15,8 +17,8 @@ class DioHttpService implements IHttpClient {
   ) async {
     final response = await _dio.delete(
       path,
-      queryParameters: queryParams,
       data: data,
+      queryParameters: queryParams,
       options: Options(headers: headers),
     );
 
@@ -32,7 +34,7 @@ class DioHttpService implements IHttpClient {
     final response = await _dio.get(
       path,
       queryParameters: queryParams,
-      options: Options(headers: queryParams),
+      options: Options(headers: headers),
     );
 
     return HttpResponse(response.data, response.statusCode ?? 0);
@@ -63,8 +65,8 @@ class DioHttpService implements IHttpClient {
   ) async {
     final response = await _dio.put(
       path,
-      queryParameters: queryParams,
       data: data,
+      queryParameters: queryParams,
       options: Options(headers: headers),
     );
     return HttpResponse(response.data, response.statusCode ?? 0);
